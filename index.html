@@ -15,12 +15,14 @@
       font-family:Arial,Helvetica,sans-serif;
       color:var(--ink);
       background:
+        linear-gradient(#f7ecd7e6,#f7ecd7f2),
+        url("swiss_quiz_creative_bg.png") center top / min(100vw,960px) auto no-repeat,
         radial-gradient(circle at 15% 12%, #ffffffa8 0 7%, transparent 8%),
         radial-gradient(circle at 88% 18%, #c8241a18 0 9%, transparent 10%),
         linear-gradient(90deg, #00000008 1px, transparent 1px),
         linear-gradient(0deg, #00000006 1px, transparent 1px),
         linear-gradient(135deg,#f8eddb,#e8d6ba);
-      background-size:auto,auto,24px 24px,24px 24px,auto;
+      background-size:auto,min(100vw,960px) auto,auto,auto,24px 24px,24px 24px,auto;
     }
     body:before{
       content:"";
@@ -32,6 +34,7 @@
       max-width:960px;
       margin:0 auto;
       padding:18px;
+      min-height:100vh;
     }
     .hero{
       position:relative;
@@ -42,7 +45,7 @@
       border-radius:4px;
       padding:24px 22px 26px;
       background:
-        linear-gradient(135deg,#fffaf0 0 55%,#ead7b8 56%),
+        linear-gradient(135deg,#fffaf0f2 0 55%,#ead7b8ee 56%),
         var(--paper);
       box-shadow:12px 12px 0 #2a2119,0 18px 55px #0003;
     }
@@ -87,7 +90,8 @@
     .small{color:var(--muted);margin:0;font-weight:900;font-size:18px;max-width:660px}
     .card{
       position:relative;
-      background:var(--paper-2);
+      background:#fff8e8f2;
+      backdrop-filter:blur(2px);
       border:4px solid var(--line);
       border-radius:3px;
       margin:18px 0;
@@ -260,9 +264,6 @@ const qs=[
 {en:"How many countries share a border with Switzerland?",ru:"Со сколькими странами граничит Швейцария?",a:["Four, if you politely erase the tiny royal-looking one from the map.","Five, because Switzerland is small but insists on being internationally surrounded.","Six, if confused tourists with ski passes are counted as temporary nations."],c:1},
 {en:"Which list contains only countries bordering Switzerland?",ru:"В каком списке только страны-соседи Швейцарии?",a:["France, Belgium, Italy, Austria, Luxembourg: very European, but too decorative.","France, Germany, Italy, Austria, Liechtenstein: the actual tight little border club.","France, Germany, Slovenia, Austria, Monaco: plausible if the Alps got folded badly."],c:1},
 {en:"Which city is NOT the capital of Switzerland?",ru:"Какой город НЕ столица Швейцарии?",a:["Geneva, even though it behaves like the capital of international seriousness.","Bern, suspiciously modest, bear-themed, and therefore easy to underestimate.","Geneva again, because repeating a trap makes the trap look official."],c:0},
-{en:"How many national languages does Switzerland have?",ru:"Сколько национальных языков в Швейцарии?",a:["Three, because the mountains swallowed the fourth one for tax reasons.","Four, because Switzerland made multilingualism look like a federal spreadsheet.","Five, if cowbells are accepted as grammar and yodelling as punctuation."],c:1},
-{en:"On many Swiss consumer products, what is the usual official language order?",ru:"Какой обычный порядок официальных языков на швейцарских товарах?",a:["German, French, Italian, Romansh: a tiny linguistic parade in federal order.","French, German, Italian, Romansh: diplomatic, elegant, but not the usual packaging reflex.","Italian, French, German, then 'Romansh, what is that?': emotionally honest, legally suspicious."],c:0},
-{en:"What is Romansh?",ru:"Что такое романшский язык?",a:["A password whispered to unlock cheese cellars under Graubünden.","Switzerland’s fourth national language, small but officially real and very Alpine.","Italian wearing hiking boots, hiding in a valley, and refusing to be simplified."],c:1},
 {en:"Which bathroom 'law' is a famous Swiss myth or house-rule legend?",ru:"Какая туалетная «законная» легенда известна в Швейцарии?",a:["No cowbell may ring inside an elevator after 22:00, unless the cow signed consent.","Fondue must be stirred clockwise in apartments to avoid disturbing the neighbours.","Flushing after 22:00 is often repeated as Swiss law, but lives mostly as myth or house rule."],c:2},
 {en:"According to the stand clue, what was a surprising Swiss export in the 18th/19th century?",ru:"По подсказке стенда, что было неожиданным швейцарским экспортом в XVIII/XIX веках?",a:["Premium Alpine gravel, sold to palaces as emotionally stable mountain dust.","Foreign-war manpower, allegedly barrel-ready when Europe ordered extra violence.","Ice for refrigeration, before machines made coldness boring and electric."],c:2},
 {en:"Which rock/music clue is linked to Montreux?",ru:"Какая рок-музыкальная подсказка связана с Монтрё?",a:["Stairway to Heaven, first performed on alphorn during a suspiciously long cheese break.","Smoke on the Water, plus the Stravinski name haunting Montreux music culture.","Bohemian Rhapsody, recorded by a frozen choir trapped under Lake Geneva."],c:1},
@@ -272,14 +273,16 @@ const qs=[
 {en:"Is the Matterhorn / Cervin only on Swiss territory?",ru:"Маттерхорн / Червин находится только в Швейцарии?",a:["No, the mountain also has an Italian side, because even icons have complicated borders.","Yes, but only if the mountain presents a Swiss passport at sunrise.","Only on Sundays, when Italy is closed for lunch and Switzerland handles the paperwork."],c:0},
 {en:"Which absurd job is linked to the word 'tapagoille'?",ru:"Какая абсурдная профессия связана со словом 'tapagoille'?",a:["A nocturnal frog hunter, because Valais apparently needed amphibian specialists after dark.","An official cowbell decibel inspector with a clipboard and emotional damage.","A random Sunday-silence agent checking if your vacuum cleaner has political intentions."],c:0},
 {en:"Could you sit near the Swiss president on a normal train?",ru:"Можно ли сесть рядом с президентом Швейцарии в обычном поезде?",a:["Impossible: Swiss presidents travel through a golden tunnel under the timetable.","Possible: Swiss political life can be so low-drama that public transport still happens.","Only in first-class chocolate compartments guarded by neutral marmots."],c:1},
+{en:"Before 24/7 readiness, when was Swiss air-policing famously available?",ru:"До круглосуточной готовности когда швейцарская воздушная полиция была доступна?",a:["Office hours: bad timing if your invasion arrived before coffee or during lunch.","Only during full moon, because fighter jets needed alpine visibility rituals.","Whenever France and Italy were too busy to answer the mountain phone."],c:0},
 {en:"Which item is the fake Swiss invention in this list?",ru:"Что в этом списке НЕ является швейцарским изобретением?",a:["World Wide Web at CERN, because scientists needed documents to behave.","Cellophane wrap, born from a very Swiss panic about spilled liquid.","LSD and the famous bicycle story, Basel’s least boring commute.","Velcro inspired by burrs on a dog, nature’s tiny engineering department.","Riri modern zipper technology, because even trousers needed Swiss precision.","Milk chocolate, the soft-power weapon disguised as dessert.","Nescafé instant coffee, emergency civilization in powder form.","Helvetica typeface, Swiss neutrality converted into letters.","Self-filing tax chocolate clock, too Swiss to exist and therefore the fake one."],c:8},
 {en:"Who won Eurovision while representing Switzerland?",ru:"Кто выиграл Евровидение, представляя Швейцарию?",a:["Tina Turner, because Switzerland loves dramatic passports but not this specific plot.","Céline Dion, borrowed by Switzerland before the world fully understood the weapon.","ABBA, but only after applying for alpine neutrality and changing into ski boots."],c:1}
 ];
+const key=qs.map(q=>String.fromCharCode(65+q.c)).join(" ");
 let i=0,ans=Array(qs.length).fill(null),start=0,tick=null;
 function startQuiz(){start=Date.now();document.getElementById('start').classList.add('hidden');document.getElementById('quiz').classList.remove('hidden');tick=setInterval(()=>{document.getElementById('timer').textContent=((Date.now()-start)/1000).toFixed(1)+' s'},100);render()}
 function render(){let q=qs[i];document.getElementById('progress').textContent='Question '+(i+1)+' / '+qs.length;document.getElementById('question').innerHTML='<div class="card q"><h2>'+(i+1)+'. '+q.en+'</h2><div class="ru">'+q.ru+'</div>'+q.a.map((x,k)=>'<button class="choice '+(ans[i]===k?'selected':'')+'" onclick="pick('+k+')">'+String.fromCharCode(65+k)+'. '+x+'</button>').join('')+'</div>'}
 function pick(k){ans[i]=k;render()} function prevQ(){if(i>0){i--;render()}} function nextQ(){if(i<qs.length-1){i++;render()}else finish()}
-function finish(){clearInterval(tick);let seconds=((Date.now()-start)/1000).toFixed(1);let score=ans.reduce((s,a,k)=>s+(a===qs[k].c?1:0),0);let letters=ans.map(a=>a==null?'?':String.fromCharCode(65+a)).join(' ');let name=document.getElementById('player').value||'Player';let artist=document.getElementById('artist').value||'—';document.getElementById('quiz').classList.add('hidden');document.getElementById('done').classList.remove('hidden');document.getElementById('done').innerHTML='<h2>Finished / Готово</h2><p class="result '+(score>=13?'ok':'bad')+'">'+score+' / '+qs.length+' · '+seconds+' s</p><p><b>Name:</b> '+name+'</p><p><b>Your answers:</b> '+letters+'</p><p><b>Bonus artist:</b> '+artist+'</p><p>Show this screen at the Swiss stand. The best score wins; fastest time wins if tied. The winner chooses one very Swiss gift.</p>'}
+function finish(){clearInterval(tick);let seconds=((Date.now()-start)/1000).toFixed(1);let score=ans.reduce((s,a,k)=>s+(a===qs[k].c?1:0),0);let letters=ans.map(a=>a==null?'?':String.fromCharCode(65+a)).join(' ');let name=document.getElementById('player').value||'Player';let artist=document.getElementById('artist').value||'—';document.getElementById('quiz').classList.add('hidden');document.getElementById('done').classList.remove('hidden');document.getElementById('done').innerHTML='<h2>Finished / Готово</h2><p class="result '+(score>=12?'ok':'bad')+'">'+score+' / '+qs.length+' · '+seconds+' s</p><p><b>Name:</b> '+name+'</p><p><b>Your answers:</b> '+letters+'</p><p><b>Bonus artist:</b> '+artist+'</p><p>Show this screen at the Swiss stand. The best score wins; fastest time wins if tied. The winner chooses one very Swiss gift.</p><details><summary>Michelle control key</summary><p><b>Correct answers:</b> '+key+'</p><p>Score is already calculated above. If two players have the same score, choose the fastest time.</p></details>'}
 </script>
 </body>
 </html>
