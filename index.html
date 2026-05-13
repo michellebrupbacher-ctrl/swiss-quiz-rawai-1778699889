@@ -78,8 +78,7 @@ const qs=[
 {en:"Matterhorn/Cervin only Swiss?",ru:"Маттерхорн только швейцарский?",a:["No, sorry chocolate","Yes, with passport","Only Sundays"],c:0},
 {en:"Tapagoille job?",ru:"Профессия tapagoille?",a:["Night frog hunter","Cowbell decibel cop","Sunday silence spy"],c:0},
 {en:"Pick the fake Swiss invention.",ru:"Выбери НЕ швейцарское изобретение.",a:["WWW at CERN","Cellophane wrap","LSD bicycle day","Velcro burr magic","Riri zipper","Milk chocolate","Nescafé powder","Helvetica letters","Self-filing tax chocolate clock"],c:8},
-{en:"Who won Eurovision for Switzerland?",ru:"Кто выиграл Евровидение за Швейцарию?",a:["Tina Turner, obviously impossible","Céline Dion, plot twist","ABBA, alpine edition"],c:1},
-{en:"Officially bilingual Swiss cities?",ru:"Официально двуязычные города?",a:["Avenches + Sierre + Vienna","Biel/Bienne + Fribourg/Freiburg","Every city after fondue"],c:1}
+{en:"Who won Eurovision for Switzerland?",ru:"Кто выиграл Евровидение за Швейцарию?",a:["Tina Turner, obviously impossible","Céline Dion, plot twist","ABBA, alpine edition"],c:1}
 ];
 let i=0,ans=Array(qs.length).fill(null),start=0,tick=null;
 function startQuiz(){start=Date.now();document.getElementById('start').classList.add('hidden');document.getElementById('quiz').classList.remove('hidden');tick=setInterval(()=>{document.getElementById('timer').textContent=((Date.now()-start)/1000).toFixed(1)+' s'},100);render()}
