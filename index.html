@@ -35,6 +35,13 @@
   <section id="start" class="card">
     <label for="player">Name / Class / Имя / класс</label>
     <input id="player" placeholder="Your name">
+    <label for="gift" style="margin-top:16px">If you win, choose one very Swiss gift / Если выиграешь, выбери швейцарский приз</label>
+    <select id="gift" style="width:100%;font-size:20px;padding:14px;border:3px solid #1e1b18;border-radius:16px;background:white">
+      <option>Swiss chocolate / Швейцарский шоколад</option>
+      <option>Ricola-style herb candy / Травяная конфета</option>
+      <option>Tiny Swiss flag / Маленький швейцарский флаг</option>
+      <option>Mystery Alpine prize / Секретный альпийский приз</option>
+    </select>
     <p><b>Rules:</b> answer fast. No Google. Show the final screen to the Swiss stand.</p>
     <p><b>Правила:</b> отвечайте быстро. Без Google. Покажите финальный экран на стенде.</p>
     <button class="primary" onclick="startQuiz()">Start quiz</button>
@@ -55,25 +62,30 @@
 </main>
 <script>
 const qs=[
-{en:"Why is the Swiss Guard connected to the Pope?",ru:"Почему Швейцарская гвардия связана с Папой?",a:["Because Vatican cows signed neutrality first.","Because Swiss mercenaries were once elite European soldiers, and the Papal Guard kept that tradition.","Because the Alps were officially rented to Rome."],c:1},
-{en:"How many countries border Switzerland?",ru:"Со сколькими странами граничит Швейцария?",a:["4","6","5"],c:2},
-{en:"Which set contains only Swiss neighbours?",ru:"Где только соседи Швейцарии?",a:["France, Belgium, Italy, Austria, Luxembourg","France, Germany, Italy, Austria, Liechtenstein","France, Germany, Slovenia, Austria, Monaco"],c:1},
-{en:"Which city is NOT the capital of Switzerland?",ru:"Какой город НЕ столица Швейцарии?",a:["Geneva","Geneva","Bern"],c:2},
-{en:"How many national languages does Switzerland have?",ru:"Сколько национальных языков в Швейцарии?",a:["3","4","5"],c:1},
-{en:"Which Swiss “law” is the famous late-night bathroom legend?",ru:"Какая швейцарская «законная» легенда про ночь?",a:["No cowbell may ring in a lift after 22:00.","Cheese fondue must be stirred clockwise in apartment blocks.","Flushing after 22:00 is often repeated as a Swiss rule, but it is more myth/house-rule than national law."],c:2},
-{en:"According to the stand clue, what was a huge Swiss export in the 18th/19th century?",ru:"По подсказке стенда, что было крупным экспортом Швейцарии в XVIII/XIX веках?",a:["Mountain rubble for royal palaces","Mercenaries packed in barrels","Ice for refrigeration"],c:2},
-{en:"Which planetary rock/music clue is linked to Montreux? Two answers are hidden in one.",ru:"Какая рок-музыкальная подсказка связана с Монтрё?",a:["Stairway to Heaven and a secret alphorn solo","Smoke on the Water and Auditorium Stravinski","Bohemian Rhapsody and a frozen yodel choir"],c:1},
-{en:"What is the difficult Swiss link with Alien?",ru:"Какая сложная швейцарская связь с Alien?",a:["A Valais cow designed the spaceship doors.","The monster was found under a fondue pot.","Swiss artist H. R. Giger designed the Alien creature."],c:2},
-{en:"What is the unbelievable Unspunnen Stone story?",ru:"Какая невероятная история камня Уншпуннен?",a:["It was trained by monks to jump over the Alps.","It was stolen by Jura separatists, in a political-performance spirit sometimes compared with IRA/Corsican-style separatist symbolism.","It was elected mayor of Interlaken and resigned."],c:1},
-{en:"Which Swiss waterfall can feel as if someone changes the volume?",ru:"Какой швейцарский водопад как будто можно сделать тише/громче?",a:["One where tourists clap and the water gets shy.","One where cows drink from the top and refill it at sunset.","Reichenbach Falls, because water flow can be reduced or restored around hydroelectric use."],c:2},
-{en:"Is the Matterhorn/Cervin only on Swiss territory?",ru:"Маттерхорн/Червин только в Швейцарии?",a:["No","Yes","Only on Sundays"],c:0},
-{en:"Which absurd job refers to tapagoille?",ru:"Какая абсурдная профессия связана со словом tapagoille?",a:["Nocturnal frog hunter","Cowbell decibel inspector","Random Sunday-silence control agent"],c:0}
+{en:"Swiss Guard + Pope: why?",ru:"Швейцарская гвардия и Папа: почему?",a:["Alpine invoice mistake","Mercenary prestige","Fondue security"],c:1},
+{en:"How many neighbours?",ru:"Сколько соседей?",a:["4, very tidy","6, too ambitious","5, suspiciously neat"],c:2},
+{en:"Only Swiss neighbours?",ru:"Только соседи Швейцарии?",a:["France, Belgium, Italy, Austria, Luxembourg","France, Germany, Italy, Austria, Liechtenstein","France, Germany, Slovenia, Austria, Monaco"],c:1},
+{en:"NOT the capital?",ru:"НЕ столица?",a:["Geneva, dressed as power","Geneva, again","Bern, too obvious"],c:2},
+{en:"National languages?",ru:"Национальные языки?",a:["3 plus yodel","4, officially chaotic","5 if cows vote"],c:1},
+{en:"On Swiss product labels, usual language order?",ru:"Обычный порядок языков на товарах?",a:["German, French, Italian, Romansh","French, German, Italian, Romansh","Italian, French, German, Romansh? What is that?"],c:0},
+{en:"Romansh is...",ru:"Романшский язык — это...",a:["A secret cheese password","Switzerland’s fourth national language","Italian with hiking boots"],c:1},
+{en:"Bathroom law legend?",ru:"Ночная туалетная легенда?",a:["No cowbell in lifts","Clockwise fondue only","Flush-after-22 myth"],c:2},
+{en:"18th/19th c. export clue?",ru:"Экспортная подсказка XVIII/XIX?",a:["Palace gravel","Barrel mercenaries","Refrigeration ice"],c:2},
+{en:"Montreux rock trap?",ru:"Монтрё рок-ловушка?",a:["Stairway + alphorn","Smoke + Stravinski","Queen + frozen yodel"],c:1},
+{en:"Swiss link with Alien?",ru:"Связь Швейцарии с Alien?",a:["Cow spaceship doors","Fondue monster egg","H. R. Giger"],c:2},
+{en:"Unspunnen stone scandal?",ru:"Скандал камня Уншпуннен?",a:["Monk-trained stone","Jura separatist theft","Mayor of Interlaken"],c:1},
+{en:"Waterfall volume knob?",ru:"Водопад с регулятором?",a:["Tourist applause mode","Cow refill system","Reichenbach flow"],c:2},
+{en:"Matterhorn/Cervin only Swiss?",ru:"Маттерхорн только швейцарский?",a:["No, sorry chocolate","Yes, with passport","Only Sundays"],c:0},
+{en:"Tapagoille job?",ru:"Профессия tapagoille?",a:["Night frog hunter","Cowbell decibel cop","Sunday silence spy"],c:0},
+{en:"Pick the fake Swiss invention.",ru:"Выбери НЕ швейцарское изобретение.",a:["WWW at CERN","Cellophane wrap","LSD bicycle day","Velcro burr magic","Riri zipper","Milk chocolate","Nescafé powder","Helvetica letters","Self-filing tax chocolate clock"],c:8},
+{en:"Who won Eurovision for Switzerland?",ru:"Кто выиграл Евровидение за Швейцарию?",a:["Tina Turner, obviously impossible","Céline Dion, plot twist","ABBA, alpine edition"],c:1},
+{en:"Officially bilingual Swiss cities?",ru:"Официально двуязычные города?",a:["Avenches + Sierre + Vienna","Biel/Bienne + Fribourg/Freiburg","Every city after fondue"],c:1}
 ];
 let i=0,ans=Array(qs.length).fill(null),start=0,tick=null;
 function startQuiz(){start=Date.now();document.getElementById('start').classList.add('hidden');document.getElementById('quiz').classList.remove('hidden');tick=setInterval(()=>{document.getElementById('timer').textContent=((Date.now()-start)/1000).toFixed(1)+' s'},100);render()}
 function render(){let q=qs[i];document.getElementById('progress').textContent='Question '+(i+1)+' / '+qs.length;document.getElementById('question').innerHTML='<div class="card q"><h2>'+(i+1)+'. '+q.en+'</h2><div class="ru">'+q.ru+'</div>'+q.a.map((x,k)=>'<button class="choice '+(ans[i]===k?'selected':'')+'" onclick="pick('+k+')">'+String.fromCharCode(65+k)+'. '+x+'</button>').join('')+'</div>'}
 function pick(k){ans[i]=k;render()} function prevQ(){if(i>0){i--;render()}} function nextQ(){if(i<qs.length-1){i++;render()}else finish()}
-function finish(){clearInterval(tick);let seconds=((Date.now()-start)/1000).toFixed(1);let score=ans.reduce((s,a,k)=>s+(a===qs[k].c?1:0),0);let letters=ans.map(a=>a==null?'?':String.fromCharCode(65+a)).join(' ');let name=document.getElementById('player').value||'Player';let artist=document.getElementById('artist').value||'—';document.getElementById('quiz').classList.add('hidden');document.getElementById('done').classList.remove('hidden');document.getElementById('done').innerHTML='<h2>Finished / Готово</h2><p class="result '+(score>=10?'ok':'bad')+'">'+score+' / '+qs.length+' · '+seconds+' s</p><p><b>Name:</b> '+name+'</p><p><b>Your answers:</b> '+letters+'</p><p><b>Bonus artist:</b> '+artist+'</p><p>Show this screen at the Swiss stand. The best score wins; fastest time wins if tied.</p>'}
+function finish(){clearInterval(tick);let seconds=((Date.now()-start)/1000).toFixed(1);let score=ans.reduce((s,a,k)=>s+(a===qs[k].c?1:0),0);let letters=ans.map(a=>a==null?'?':String.fromCharCode(65+a)).join(' ');let name=document.getElementById('player').value||'Player';let artist=document.getElementById('artist').value||'—';let gift=document.getElementById('gift').value;document.getElementById('quiz').classList.add('hidden');document.getElementById('done').classList.remove('hidden');document.getElementById('done').innerHTML='<h2>Finished / Готово</h2><p class="result '+(score>=13?'ok':'bad')+'">'+score+' / '+qs.length+' · '+seconds+' s</p><p><b>Name:</b> '+name+'</p><p><b>Gift choice:</b> '+gift+'</p><p><b>Your answers:</b> '+letters+'</p><p><b>Bonus artist:</b> '+artist+'</p><p>Show this screen at the Swiss stand. The best score wins; fastest time wins if tied.</p>'}
 </script>
 </body>
 </html>
