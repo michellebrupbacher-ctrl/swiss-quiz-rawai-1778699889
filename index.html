@@ -6,230 +6,181 @@
   <title>Swiss & Valais Chocolate Quiz</title>
   <style>
     :root{
-      --red:#c8241a;--deep-red:#8e1712;--ink:#211a14;--paper:#f7ecd7;--paper-2:#fff8e8;
-      --line:#2a2119;--muted:#705f4e;--gold:#b88746;--green:#176b4b;
+      --red:#d52b1e;--ink:#171717;--muted:#686868;--line:#dedede;--soft:#f7f7f5;--green:#16714f;
     }
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family:Arial,Helvetica,sans-serif;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       color:var(--ink);
-      background:
-        linear-gradient(#f7ecd7e6,#f7ecd7f2),
-        url("swiss_quiz_creative_bg.png") center top / min(100vw,960px) auto no-repeat,
-        radial-gradient(circle at 15% 12%, #ffffffa8 0 7%, transparent 8%),
-        radial-gradient(circle at 88% 18%, #c8241a18 0 9%, transparent 10%),
-        linear-gradient(90deg, #00000008 1px, transparent 1px),
-        linear-gradient(0deg, #00000006 1px, transparent 1px),
-        linear-gradient(135deg,#f8eddb,#e8d6ba);
-      background-size:auto,min(100vw,960px) auto,auto,auto,24px 24px,24px 24px,auto;
-    }
-    body:before{
-      content:"";
-      position:fixed;inset:0;pointer-events:none;opacity:.28;
-      background-image:repeating-linear-gradient(100deg,transparent 0 8px,#5b412516 9px 10px);
-      mix-blend-mode:multiply;
+      background:#fff;
+      font-size:16px;
     }
     main{
-      max-width:960px;
+      max-width:760px;
       margin:0 auto;
-      padding:18px;
+      padding:18px 16px 30px;
       min-height:100vh;
     }
     .hero{
-      position:relative;
       overflow:hidden;
       color:var(--ink);
-      text-align:left;
-      border:5px solid var(--line);
-      border-radius:4px;
-      padding:24px 22px 26px;
-      background:
-        linear-gradient(135deg,#fffaf0f2 0 55%,#ead7b8ee 56%),
-        var(--paper);
-      box-shadow:12px 12px 0 #2a2119,0 18px 55px #0003;
+      text-align:center;
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:18px 18px 22px;
+      background:#fff;
+      box-shadow:0 10px 40px #0000000d;
     }
-    .hero:before{
-      content:"✚";
-      display:grid;place-items:center;
-      position:absolute;right:22px;top:22px;
-      width:88px;height:88px;
-      color:white;background:var(--red);
-      border:4px solid var(--line);
-      font-size:54px;font-weight:900;line-height:1;
-    }
-    .hero:after{
-      content:"VALAIS · TERRE DE CARACTÈRES";
-      position:absolute;left:22px;bottom:10px;
-      color:var(--deep-red);
-      font-size:13px;font-weight:900;letter-spacing:2px;
-      border-top:2px solid var(--deep-red);
-      padding-top:6px;
-    }
+    .hero img{display:block;width:100%;max-width:560px;margin:0 auto 8px;border-radius:18px}
     h1{
-      max-width:680px;
-      font-size:clamp(42px,10vw,92px);
-      line-height:.82;
-      margin:4px 0 12px;
-      font-weight:1000;
-      letter-spacing:-4px;
-      text-transform:uppercase;
+      font-size:clamp(30px,8vw,48px);
+      line-height:1;
+      margin:0 0 8px;
+      font-weight:650;
+      letter-spacing:-1.8px;
     }
     .sub{
       display:inline-block;
-      margin:0 0 36px;
-      padding:8px 12px;
-      border:3px solid var(--line);
-      background:var(--red);
-      color:white;
-      font-size:clamp(18px,4vw,28px);
-      font-weight:900;
-      text-transform:uppercase;
-      box-shadow:5px 5px 0 var(--line);
+      margin:0 0 12px;
+      color:var(--red);
+      font-size:18px;
+      font-weight:600;
+      letter-spacing:-.2px;
     }
-    .small{color:var(--muted);margin:0;font-weight:900;font-size:18px;max-width:660px}
+    .small{color:var(--muted);margin:0 auto;font-weight:400;font-size:15px;max-width:520px;line-height:1.45}
     .card{
       position:relative;
-      background:#fff8e8f2;
-      backdrop-filter:blur(2px);
-      border:4px solid var(--line);
-      border-radius:3px;
-      margin:18px 0;
-      padding:20px;
-      box-shadow:8px 8px 0 #2a2119;
-    }
-    .card:before{
-      content:"";
-      position:absolute;inset:6px;
-      border:1px solid #8e17125c;
-      pointer-events:none;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:22px;
+      margin:14px 0;
+      padding:18px;
+      box-shadow:0 8px 30px #0000000a;
     }
     label{
       display:block;
-      font-weight:1000;
+      font-weight:600;
       margin-bottom:8px;
-      text-transform:uppercase;
-      letter-spacing:.5px;
+      letter-spacing:-.2px;
     }
     input{
       width:100%;
-      font-size:22px;
-      padding:14px;
-      border:3px solid var(--line);
-      border-radius:0;
-      background:#fffdf6;
+      font-size:17px;
+      padding:13px 14px;
+      border:1px solid #cfcfcb;
+      border-radius:14px;
+      background:#fff;
       color:var(--ink);
-      box-shadow:inset 4px 4px 0 #00000010;
     }
     .topbar{
       display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;
-      background:var(--ink);
-      color:white;
-      box-shadow:8px 8px 0 var(--red);
-    }
-    .topbar:before{border-color:#ffffff55}
-    .pill{
-      background:#fff8e8;
+      background:#fafafa;
       color:var(--ink);
-      border:3px solid white;
+      box-shadow:none;
+    }
+    .pill{
+      background:#fff;
+      color:var(--ink);
+      border:1px solid var(--line);
       border-radius:999px;
-      padding:10px 14px;
-      font-weight:1000;
-      text-transform:uppercase;
-      box-shadow:0 0 0 3px var(--line);
+      padding:8px 12px;
+      font-weight:600;
+      font-size:14px;
     }
     #timer{
-      min-width:112px;text-align:center;
-      background:radial-gradient(circle,#f9f0dc 0 42%,#d9c09b 43% 46%,#211a14 47% 49%,#f9f0dc 50%);
+      min-width:90px;text-align:center;
+      color:var(--red);
     }
     .q h2{
-      font-size:clamp(25px,5vw,38px);
-      line-height:1.02;
-      margin:0 0 10px;
-      text-transform:uppercase;
-      letter-spacing:-1px;
+      font-size:clamp(20px,5vw,29px);
+      line-height:1.15;
+      margin:0 0 12px;
+      font-weight:650;
+      letter-spacing:-.8px;
     }
     .ru{
       color:var(--muted);
-      font-weight:900;
-      margin-bottom:16px;
-      font-size:17px;
-      border-left:6px solid var(--red);
-      padding-left:10px;
+      font-weight:400;
+      margin-bottom:14px;
+      font-size:14px;
+      line-height:1.35;
+      border-left:3px solid var(--red);
+      padding-left:9px;
     }
     button{font:inherit}
     .choice{
       width:100%;
       text-align:left;
-      padding:15px 16px 15px 54px;
-      margin:10px 0;
-      border:3px solid var(--line);
-      border-radius:0;
-      background:#fffdf6;
+      padding:13px 14px 13px 48px;
+      margin:9px 0;
+      border:1px solid #d9d9d5;
+      border-radius:16px;
+      background:#fff;
       cursor:pointer;
-      font-weight:900;
-      line-height:1.25;
+      font-weight:430;
+      line-height:1.32;
       position:relative;
-      box-shadow:5px 5px 0 #00000022;
+      box-shadow:none;
+      transition:.16s ease;
     }
     .choice:before{
       content:"";
       position:absolute;left:13px;top:50%;transform:translateY(-50%);
-      width:24px;height:24px;border-radius:50%;
-      border:3px solid var(--line);
-      background:linear-gradient(135deg,#fff,#c9b18a);
+      width:20px;height:20px;border-radius:50%;
+      border:1.5px solid #999;
+      background:#fff;
     }
-    .choice:hover{background:#fff1d8;transform:translate(-1px,-1px);box-shadow:7px 7px 0 #00000025}
+    .choice:hover{background:#fafafa;border-color:#b8b8b4}
     .choice.selected{
-      background:#fbe2d3;
-      border-color:var(--deep-red);
-      box-shadow:7px 7px 0 var(--deep-red);
+      background:#fff4f2;
+      border-color:var(--red);
+      box-shadow:0 0 0 2px #d52b1e18;
     }
-    .choice.selected:before{background:var(--red);box-shadow:inset 0 0 0 5px #fff}
+    .choice.selected:before{background:var(--red);box-shadow:inset 0 0 0 4px #fff;border-color:var(--red)}
     .actions{
       display:flex;gap:12px;flex-wrap:wrap;
       position:sticky;bottom:8px;z-index:5;
-      background:#f7ecd7cc;
+      background:#ffffffd9;
       backdrop-filter:blur(8px);
       padding:10px 0;
     }
     .primary,.secondary{
-      border:3px solid var(--line);
-      border-radius:0;
-      padding:16px 20px;
-      font-weight:1000;
-      font-size:20px;
+      border:1px solid var(--ink);
+      border-radius:999px;
+      padding:13px 18px;
+      font-weight:600;
+      font-size:16px;
       cursor:pointer;
-      text-transform:uppercase;
-      box-shadow:6px 6px 0 var(--line);
+      box-shadow:none;
     }
     .primary{background:var(--red);color:#fff}
-    .secondary{background:#fff8e8;color:var(--ink)}
-    .primary:active,.secondary:active{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--line)}
-    .result{font-size:34px;font-weight:1000}.ok{color:var(--green)}.bad{color:var(--red)} .hidden{display:none}
+    .secondary{background:#fff;color:var(--ink)}
+    .primary:active,.secondary:active{transform:translateY(1px)}
+    .result{font-size:30px;font-weight:650}.ok{color:var(--green)}.bad{color:var(--red)} .hidden{display:none}
     .answers{font-size:18px;line-height:1.5}
     .footer{
-      font-size:13px;
+      font-size:12px;
       color:var(--muted);
       text-align:center;
       padding:24px 10px;
-      text-transform:uppercase;
-      letter-spacing:1px;
-      font-weight:900;
+      letter-spacing:.2px;
+      font-weight:400;
     }
     @media (max-width:620px){
-      main{padding:12px}
-      .hero{box-shadow:7px 7px 0 #2a2119;padding:20px 16px}
-      .hero:before{width:58px;height:58px;font-size:36px;right:14px;top:14px}
-      .card{padding:16px;box-shadow:5px 5px 0 #2a2119}
-      .choice{padding-left:48px;font-size:15px}
-      .primary,.secondary{font-size:16px;flex:1}
+      main{padding:10px 10px 24px}
+      .hero{padding:12px 12px 16px;border-radius:18px}
+      .hero img{margin-bottom:2px;border-radius:12px}
+      .card{padding:14px;border-radius:18px}
+      .choice{padding-left:44px;font-size:14px}
+      .primary,.secondary{font-size:15px;flex:1}
     }
   </style>
 </head>
 <body>
 <main>
   <section class="hero">
+    <img src="swiss_quiz_nano_chic_header.png" alt="">
     <h1>Swiss & Valais Quiz</h1>
     <p class="sub">Швейцарская викторина</p>
     <p class="small">Best score wins Swiss chocolate. Tie-breaker: fastest time.</p>
