@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Swiss & Valais Chocolate Quiz</title>
+  <style>
+    :root{--red:#d52b1e;--ink:#1e1b18;--cream:#fff7eb;--card:#ffffff;--muted:#6d6258;--green:#0f7a4f}
+    *{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#fff7eb,#f2efe8);color:var(--ink)}
+    main{max-width:920px;margin:0 auto;padding:22px}
+    .hero{background:var(--red);color:white;border-radius:28px;padding:28px 22px;text-align:center;box-shadow:0 18px 50px #0002}
+    h1{font-size:clamp(34px,8vw,68px);line-height:.95;margin:0 0 8px;font-weight:900;letter-spacing:-2px}
+    .sub{font-size:clamp(18px,4vw,28px);font-weight:700;margin:0}.small{color:#fff;opacity:.9;margin:10px 0 0}
+    .card{background:var(--card);border:3px solid #1e1b18;border-radius:24px;margin:18px 0;padding:20px;box-shadow:8px 8px 0 #1e1b18}
+    label{display:block;font-weight:800;margin-bottom:8px} input{width:100%;font-size:22px;padding:14px;border:3px solid #1e1b18;border-radius:16px}
+    .topbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+    .pill{background:#1e1b18;color:#fff;border-radius:999px;padding:10px 14px;font-weight:800}
+    .q h2{font-size:22px;margin:0 0 8px}.ru{color:var(--muted);font-weight:700;margin-bottom:14px}
+    button{font:inherit}.choice{width:100%;text-align:left;padding:14px 16px;margin:8px 0;border:3px solid #1e1b18;border-radius:16px;background:#fff;cursor:pointer;font-weight:800}
+    .choice:hover{background:#fff1d8}.choice.selected{background:#ffe2dd;border-color:var(--red)}
+    .actions{display:flex;gap:12px;flex-wrap:wrap}.primary{background:var(--red);color:#fff;border:0;border-radius:18px;padding:16px 20px;font-weight:900;font-size:20px;cursor:pointer}
+    .secondary{background:#1e1b18;color:#fff;border:0;border-radius:18px;padding:16px 20px;font-weight:900;font-size:20px;cursor:pointer}
+    .result{font-size:24px;font-weight:900}.ok{color:var(--green)}.bad{color:var(--red)} .hidden{display:none}
+    .answers{font-size:18px;line-height:1.5}.footer{font-size:13px;color:var(--muted);text-align:center;padding:20px}
+  </style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <h1>Swiss & Valais Quiz</h1>
+    <p class="sub">Швейцарская викторина</p>
+    <p class="small">Best score wins Swiss chocolate. Tie-breaker: fastest time.</p>
+  </section>
+
+  <section id="start" class="card">
+    <label for="player">Name / Class / Имя / класс</label>
+    <input id="player" placeholder="Your name">
+    <p><b>Rules:</b> answer fast. No Google. Show the final screen to the Swiss stand.</p>
+    <p><b>Правила:</b> отвечайте быстро. Без Google. Покажите финальный экран на стенде.</p>
+    <button class="primary" onclick="startQuiz()">Start quiz</button>
+  </section>
+
+  <section id="quiz" class="hidden">
+    <div class="card topbar"><div class="pill" id="progress">Question 1 / 13</div><div class="pill" id="timer">0.0 s</div></div>
+    <div id="question"></div>
+    <div class="card">
+      <label for="artist">Bonus, not scored: name one Swiss artist. / Бонус: назовите одного швейцарского художника.</label>
+      <input id="artist" placeholder="e.g. Alberto Giacometti">
+    </div>
+    <div class="actions"><button class="secondary" onclick="prevQ()">Back</button><button class="primary" onclick="nextQ()">Next</button></div>
+  </section>
+
+  <section id="done" class="card hidden"></section>
+  <p class="footer">Lighthouse School Rawai Phuket · Switzerland & Valais stand</p>
+</main>
+<script>
+const qs=[
+{en:"Why is the Swiss Guard connected to the Pope?",ru:"Почему Швейцарская гвардия связана с Папой?",a:["Because Vatican cows signed neutrality first.","Because Swiss mercenaries were once elite European soldiers, and the Papal Guard kept that tradition.","Because the Alps were officially rented to Rome."],c:1},
+{en:"How many countries border Switzerland?",ru:"Со сколькими странами граничит Швейцария?",a:["4","6","5"],c:2},
+{en:"Which set contains only Swiss neighbours?",ru:"Где только соседи Швейцарии?",a:["France, Belgium, Italy, Austria, Luxembourg","France, Germany, Italy, Austria, Liechtenstein","France, Germany, Slovenia, Austria, Monaco"],c:1},
+{en:"Which city is NOT the capital of Switzerland?",ru:"Какой город НЕ столица Швейцарии?",a:["Geneva","Geneva","Bern"],c:2},
+{en:"How many national languages does Switzerland have?",ru:"Сколько национальных языков в Швейцарии?",a:["3","4","5"],c:1},
+{en:"Which Swiss “law” is the famous late-night bathroom legend?",ru:"Какая швейцарская «законная» легенда про ночь?",a:["No cowbell may ring in a lift after 22:00.","Cheese fondue must be stirred clockwise in apartment blocks.","Flushing after 22:00 is often repeated as a Swiss rule, but it is more myth/house-rule than national law."],c:2},
+{en:"According to the stand clue, what was a huge Swiss export in the 18th/19th century?",ru:"По подсказке стенда, что было крупным экспортом Швейцарии в XVIII/XIX веках?",a:["Mountain rubble for royal palaces","Mercenaries packed in barrels","Ice for refrigeration"],c:2},
+{en:"Which planetary rock/music clue is linked to Montreux? Two answers are hidden in one.",ru:"Какая рок-музыкальная подсказка связана с Монтрё?",a:["Stairway to Heaven and a secret alphorn solo","Smoke on the Water and Auditorium Stravinski","Bohemian Rhapsody and a frozen yodel choir"],c:1},
+{en:"What is the difficult Swiss link with Alien?",ru:"Какая сложная швейцарская связь с Alien?",a:["A Valais cow designed the spaceship doors.","The monster was found under a fondue pot.","Swiss artist H. R. Giger designed the Alien creature."],c:2},
+{en:"What is the unbelievable Unspunnen Stone story?",ru:"Какая невероятная история камня Уншпуннен?",a:["It was trained by monks to jump over the Alps.","It was stolen by Jura separatists, in a political-performance spirit sometimes compared with IRA/Corsican-style separatist symbolism.","It was elected mayor of Interlaken and resigned."],c:1},
+{en:"Which Swiss waterfall can feel as if someone changes the volume?",ru:"Какой швейцарский водопад как будто можно сделать тише/громче?",a:["One where tourists clap and the water gets shy.","One where cows drink from the top and refill it at sunset.","Reichenbach Falls, because water flow can be reduced or restored around hydroelectric use."],c:2},
+{en:"Is the Matterhorn/Cervin only on Swiss territory?",ru:"Маттерхорн/Червин только в Швейцарии?",a:["No","Yes","Only on Sundays"],c:0},
+{en:"Which absurd job refers to tapagoille?",ru:"Какая абсурдная профессия связана со словом tapagoille?",a:["Nocturnal frog hunter","Cowbell decibel inspector","Random Sunday-silence control agent"],c:0}
+];
+let i=0,ans=Array(qs.length).fill(null),start=0,tick=null;
+function startQuiz(){start=Date.now();document.getElementById('start').classList.add('hidden');document.getElementById('quiz').classList.remove('hidden');tick=setInterval(()=>{document.getElementById('timer').textContent=((Date.now()-start)/1000).toFixed(1)+' s'},100);render()}
+function render(){let q=qs[i];document.getElementById('progress').textContent='Question '+(i+1)+' / '+qs.length;document.getElementById('question').innerHTML='<div class="card q"><h2>'+(i+1)+'. '+q.en+'</h2><div class="ru">'+q.ru+'</div>'+q.a.map((x,k)=>'<button class="choice '+(ans[i]===k?'selected':'')+'" onclick="pick('+k+')">'+String.fromCharCode(65+k)+'. '+x+'</button>').join('')+'</div>'}
+function pick(k){ans[i]=k;render()} function prevQ(){if(i>0){i--;render()}} function nextQ(){if(i<qs.length-1){i++;render()}else finish()}
+function finish(){clearInterval(tick);let seconds=((Date.now()-start)/1000).toFixed(1);let score=ans.reduce((s,a,k)=>s+(a===qs[k].c?1:0),0);let letters=ans.map(a=>a==null?'?':String.fromCharCode(65+a)).join(' ');let name=document.getElementById('player').value||'Player';let artist=document.getElementById('artist').value||'—';document.getElementById('quiz').classList.add('hidden');document.getElementById('done').classList.remove('hidden');document.getElementById('done').innerHTML='<h2>Finished / Готово</h2><p class="result '+(score>=10?'ok':'bad')+'">'+score+' / '+qs.length+' · '+seconds+' s</p><p><b>Name:</b> '+name+'</p><p><b>Your answers:</b> '+letters+'</p><p><b>Bonus artist:</b> '+artist+'</p><p>Show this screen at the Swiss stand. The best score wins; fastest time wins if tied.</p>'}
+</script>
+</body>
+</html>
